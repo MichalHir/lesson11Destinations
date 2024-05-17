@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="destunationAdding">
+      <input id="new1" />
+      <input id="new2" />
+      <button onclick="addDes()">add</button>
+      <button onclick="popDes()">pop</button>
+    </div>
+    <div id="destinationsDisplay"></div>
+
+    <script>
+      let myDestinations = ['Barcelona', 'London', 'Thailand'];
+      console.log(myDestinations);
+      //myDestinations.push('New York')
+      // myDestinations.pop()
+      destinationsDisplay.innerHTML = myDestinations.join('<BR>');
+      function addDes() {
+        if (new2.value=='already in the list') {
+            new2.value=''
+        }
+        if (!myDestinations.includes(new1.value)) {
+          myDestinations.push(new1.value);
+          new1.value = '';
+          destinationsDisplay.innerHTML = myDestinations.join('<BR>');  
+          
+        } else {
+          new1.value = '';
+          alert('already in the list')
+          new2.value='already in the list'
+        }
+      }
+      function popDes() {
+        myDestinations.pop();
+        destinationsDisplay.innerHTML = myDestinations.join('<BR>');
+        if (myDestinations.length == 0) {
+          new1.value = 'no destinations';
+        }
+      }
+    </script>
+  </body>
+</html>
