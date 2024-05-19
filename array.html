@@ -16,24 +16,25 @@
 1. הוסיפו כפתור edit ליד המחיקה. 
 2. עצבו את המסך בצורה של CARDS בבוטסטרפ. (כל אלמנט במערך צריך להיות CARD) - אפשר גם להוסיף לו תמונה רנדומלית מpicsum או משהו אחר. בהמשך נחבר את התמונה האמיתית
 3. נסו להוסיף גם חיפוש (כפתור חיפוש + תיבת טקסט )  שתציג רק את היעדים שחיפשתם-->
-    <!-- <div id="destinationAdding">
+    <div id="destinationAdding">
         <div class="input-group">
-            <input type="text" id="new1" class="form-control" placeholder="destination's name" aria-label="Recipient's username with two button addons">
-            <button class="btn btn-primary" onclick="addDes()">add</button>
-            <button class="btn btn-outline-secondary" onclick="addDes()" type="button">add</button>
-            <button class="btn btn-outline-secondary" type="button">Button</button>
-          </div> -->
-      <input id="newDes" />
+            <input  id="newDes" class="form-control" placeholder="destination's name" aria-label="Recipient's username with two button addons">
+            <button class="btn btn-primary" onclick="addDes()" type="button">add</button>
+            <button class="btn btn-primary" onclick="popDes()" type="button">pop</button>
+            <button class="btn btn-primary" onclick="serDes()" type="button">search</button>
+    </div>
+          </div>
+      <!-- <input id="newDes" />
       <button class="btn btn-primary" onclick="addDes()">add</button>
       <button class="btn btn-primary" onclick="popDes()">pop</button>
-      <button class="btn btn-primary" onclick="serDes()">search</button>
+      <button class="btn btn-primary" onclick="serDes()">search</button> -->
     </div>
     <div id="destinationsDisplay"></div>
-    <!-- <img> src="https://picsum.photos/seed/picsum/200/300" </img> -->
 
     <script>
       // src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
       let myDestinations = ['Barcelona', 'London', 'Thailand'];
+      let myDestinationsCards = [];
       console.log(myDestinations);
       destinationsDisplay.innerHTML = DestinationsHTML();
       function addDes() {
@@ -49,7 +50,6 @@
       }
       function popDes() {
         myDestinations.pop();
-        // destinationsDisplay.innerHTML = myDestinations.join('<BR>');
         destinationsDisplay.innerHTML = DestinationsHTML();
         if (myDestinations.length == 0) {
           destinationsDisplay.innerHTML =
@@ -59,10 +59,11 @@
       function serDes() {
         if (myDestinations.includes(newDes.value)) {
             //destinationsDisplay.innerHTML = myDestinations[myDestinations.indexOf(newDes.value)]
-            destinationsDisplay.innerHTML = `<div class="card"">
-            <div class="card-body" >
-                <div>${myDestinations.indexOf(newDes.value) + 1}  ${myDestinations[myDestinations.indexOf(newDes.value)]} <img src="https://picsum.photos/seed/40/20"> </img>
-                                  </div>`;
+            // destinationsDisplay.innerHTML = `<div class="card"">
+            // <div class="card-body" >
+            //     <div>${myDestinations.indexOf(newDes.value) + 1}  ${myDestinations[myDestinations.indexOf(newDes.value)]} <img src="https://picsum.photos/seed/40/20"> </img>
+            //                       </div>`;
+            destinationsDisplay.innerHTML=`<div>${myDestinations.indexOf(newDes.value) + 1}${myDestinationsCards[myDestinations.indexOf(newDes.value)]}</div>`
         }
       }
       function delDes(num) {
@@ -75,22 +76,33 @@
         }
         destinationsDisplay.innerHTML = DestinationsHTML();
       }
-
+      function cardBuilder() {
+        for (let i = 0; i < myDestinations.length; i++) {
+          myDestinationsCards[i]=`<div class="card"">
+            <div class="card-body" >
+                <div> ${myDestinations[i]} <img src="https://picsum.photos/seed/${myDestinations[i]}/40/20"> </img>
+                                    <button class="btn btn-danger" onclick="delDes(${i})">Delete</button><button class="btn btn-primary" onclick="edDes(${i})">edit</button>
+                                  </div>`;
+        }
+      }
       function DestinationsHTML() {
         let finalHtml = '';
+        cardBuilder()
         for (let i = 0; i < myDestinations.length; i++) {
-          const element = myDestinations[i];
+          const element = myDestinationsCards[i];
           // let elementHTML =
           // '<div>' +(i+1)+' '+ element + '<button onclick="delDes(i)">Delete</button></div>';
 
           //let elementHTML = `<div>${i + 1} &nbsp; ${element}
           //<button onclick="delDes(${i})">Delete</button><button onclick="edDes(${i})">edit</button>
           //</div>`;
-          let elementHTML = `<div class="card"">
-            <div class="card-body" >
-                <div>${i + 1} &nbsp ${element} <img src="https://picsum.photos/seed/${element}/40/20"> </img>
-                                    <button class="btn btn-danger" onclick="delDes(${i})">Delete</button><button class="btn btn-primary" onclick="edDes(${i})">edit</button>
-                                  </div>`;
+          // let elementHTML = `<div class="card"">
+          //   <div class="card-body" >  cards combined
+          //       <div>${i + 1} &nbsp ${element} <img src="https://picsum.photos/seed/${element}/40/20"> </img>
+          //                           <button class="btn btn-danger" onclick="delDes(${i})">Delete</button><button class="btn btn-primary" onclick="edDes(${i})">edit</button>
+          //                         </div>`;
+            let elementHTML = 
+                `<div>${i + 1} &nbsp ${element}</div> `;
           finalHtml = finalHtml + elementHTML;
         }
         return finalHtml;
