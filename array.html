@@ -31,6 +31,7 @@
       let myDestinationsCards = [];
       console.log(myDestinations);
       destinationsDisplay.innerHTML = DestinationsHTML();
+
       function addDes() {
         if (!myDestinations.includes(newDes.value) && newDes.value!='') {
           myDestinations.push(newDes.value);
@@ -53,10 +54,24 @@
       }
 
       function serDes() {
-        if (myDestinations.includes(newDes.value)) {
+        debugger
+        // let serHtml = '';
+        // for (let i = 0; i < myDestinations.length; i++) {
+        //   const element = myDestinationsCards[i];
+        //   if (myDestinations[i].indexOf(newDes.value)!=-1){
+        //     let elementHTML = 
+        //         `<div>${i + 1} &nbsp ${element}</div> `;
+        //   serlHtml = serHtml + elementHTML;
+        //   }
+        // }
+        // return serHtml;
+        if (myDestinations.includes(newDes.value)=) {
             destinationsDisplay.innerHTML=`<div>${myDestinations.indexOf(newDes.value) + 1}${myDestinationsCards[myDestinations.indexOf(newDes.value)]}</div>`
-        }
-      }
+         } //else {
+          // console.log('!!!!')
+          // destinationsDisplay.innerHTML='<div style="color:red">No search results....</div>'
+          // alert('already in the list');
+        } 
 
       function delDes(num) {
         myDestinations.splice(num, 1);
