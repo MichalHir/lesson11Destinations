@@ -19,6 +19,7 @@
             <button class="btn btn-primary" onclick="addDes()" type="button">add</button>
             <button class="btn btn-danger" onclick="popDes()" type="button">pop</button>
             <button class="btn btn-primary" onclick="serDes()" type="button">search</button>
+            <button class="btn btn-primary" onclick="backDes()" type="button">back</button>
     </div>   
       <!-- <input id="newDes" />
       <button class="btn btn-primary" onclick="addDes()">add</button>
@@ -49,29 +50,24 @@
         destinationsDisplay.innerHTML = DestinationsHTML();
         if (myDestinations.length == 0) {
           destinationsDisplay.innerHTML =
-            '<div style="color:red">No Destinations....</div>';
+            '<div style="color:red">No Destinations</div>';
         }
       }
 
       function serDes() {
-        debugger
-        // let serHtml = '';
-        // for (let i = 0; i < myDestinations.length; i++) {
-        //   const element = myDestinationsCards[i];
-        //   if (myDestinations[i].indexOf(newDes.value)!=-1){
-        //     let elementHTML = 
-        //         `<div>${i + 1} &nbsp ${element}</div> `;
-        //   serlHtml = serHtml + elementHTML;
-        //   }
-        // }
-        // return serHtml;
-        if (myDestinations.includes(newDes.value)) {
-            destinationsDisplay.innerHTML=`<div>${myDestinations.indexOf(newDes.value) + 1}${myDestinationsCards[myDestinations.indexOf(newDes.value)]}</div>`
-          } //else {
-          // console.log('!!!!')
-          // destinationsDisplay.innerHTML='<div style="color:red">No search results....</div>'
-          // alert('already in the list');
-        } 
+        destinationsDisplay.innerHTML=''
+        let lowercase=''
+        for (let i = 0; i < myDestinations.length; i++) {
+           lowercase=myDestinations[i].lowercase
+           if ((myDestinations[i].toLocaleLowerCase()).lastIndexOf((newDes.value).toLocaleLowerCase())!=-1){
+            destinationsDisplay.innerHTML+=`<div>${i + 1}${myDestinationsCards[i]}</div>`
+          }
+         }
+        if (destinationsDisplay.innerHTML==''){
+          alert ('no matches were found')
+          destinationsDisplay.innerHTML ='<div style="color:red">No matches</div>';
+        }
+      }
 
       function delDes(num) {
         myDestinations.splice(num, 1);
@@ -93,6 +89,10 @@
                                     <button class="btn btn-danger" onclick="delDes(${i})">Delete</button><button class="btn btn-primary" onclick="edDes(${i})">edit</button>
                                   </div>`;
         }
+      }
+
+      function backDes() {
+        destinationsDisplay.innerHTML = DestinationsHTML();
       }
 
       function DestinationsHTML() {
