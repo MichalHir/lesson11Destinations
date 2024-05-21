@@ -58,8 +58,8 @@
         destinationsDisplay.innerHTML=''
         let lowercase=''
         for (let i = 0; i < myDestinations.length; i++) {
-           lowercase=myDestinations[i].lowercase
-           if ((myDestinations[i].toLocaleLowerCase()).lastIndexOf((newDes.value).toLocaleLowerCase())!=-1){
+           lowercase=myDestinations[i].toLocaleLowerCase()
+           if (lowercase.lastIndexOf((newDes.value).toLocaleLowerCase())!=-1){
             destinationsDisplay.innerHTML+=`<div>${i + 1}${myDestinationsCards[i]}</div>`
           }
          }
