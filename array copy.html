@@ -24,6 +24,7 @@
             <button class="btn btn-danger" onclick="popDes()" type="button">pop</button>
             <button class="btn btn-primary" onclick="serDes()" type="button">search</button>
             <button class="btn btn-primary" onclick="backDes()" type="button">back</button>
+            <button class="btn btn-primary" onclick="reskDes()" type="button">reset</button>
     </div>   
       <!-- <input id="newDes" />
       <button class="btn btn-primary" onclick="addDes()">add</button>
@@ -74,6 +75,7 @@
 
       function popDes() {
         myDest.pop();
+        localStorage.setItem("mydestinations2",JSON.stringify(myDest)) // changes parmanently the localstorage
         destinationsDisplay.innerHTML = DestinationsHTML();
         if (myDest.length == 0) {
           destinationsDisplay.innerHTML =
@@ -99,6 +101,7 @@
       function delDes(num) {
         myDest.splice(num, 1);
         destinationsDisplay.innerHTML = DestinationsHTML();
+        localStorage.setItem("mydestinations2",JSON.stringify(myDest))
       }
 
       // function edDes(num) {
@@ -123,6 +126,36 @@
 
       function backDes() {
         destinationsDisplay.innerHTML = DestinationsHTML();
+      }
+
+      function reskDes() {
+        let myDest2 = [
+        {
+          name: 'Barcelona',
+          score: 8.5,
+          myRestaurant: ['chef', 'la bamba'],
+          population: 50000,
+          image: "https://picsum.photos/seed/${element}/40/20"
+        },
+        {
+          name: 'London',
+          score: 8.5,
+          myRestaurant: ['chef', 'la bamba'],
+          population: 50000,
+          image: "https://picsum.photos/seed/${element}/40/20"
+        },
+        {
+          name: 'Thailand',
+          score: 8.5,
+          myRestaurant: ['chef', 'la bamba'],
+          population: 50000,
+          image: "https://picsum.photos/seed/${element}/40/20"
+        },
+      ];
+
+      localStorage.setItem("mydestinations2",JSON.stringify(myDest2))
+      myDest=JSON.parse(localStorage.getItem("mydestinations2"))
+      destinationsDisplay.innerHTML = DestinationsHTML();
       }
 
       function DestinationsHTML() {
