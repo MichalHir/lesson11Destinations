@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="display"></div>
+    
+    <script>
+      //let myDestinations = ['Barcelona', 'London', 'Thailand'];
+      let myDest = [
+        {
+          name: 'Barcelona',
+          score: 8.5,
+          myRestaurant: ['chef', 'la bamba'],
+          population: 50000,
+          image: "https://picsum.photos/seed/${element}/40/20"
+        },
+        {
+          name: 'London',
+          score: 8.5,
+          myRestaurant: ['chef', 'la bamba'],
+          population: 50000,
+          image: "https://picsum.photos/seed/${element}/40/20"
+        },
+        {
+          name: 'Thailand',
+          score: 8.5,
+          myRestaurant: ['chef', 'la bamba'],
+          population: 50000,
+          image: "https://picsum.photos/seed/${element}/40/20"
+        },
+      ];
+       function DestinationsHTML() {
+        let finalHTML = '';
+        for (let i = 0; i < myDest.length; i++) {
+          let elementHTML = `${i + 1} <br> city:${myDest[i].name} <br> <img src="${myDest[i].image}" style="max-width:200px"><br> score:${
+            myDest[i].score
+          }<br> restaurants:${myDest[i].myRestaurant}<br> population:${
+            myDest[i].population
+          }
+          <br><hr>`
+          finalHTML = finalHTML + elementHTML;
+       }
+       return finalHTML
+    }
+       display.innerHTML = DestinationsHTML();
+    //     let finalHTML = '';
+    //     for (let i = 0; i < myDest.length; i++) {
+    //       let elementHTML = `${i + 1} <br> city:${myDest[i].name} <br> <img src="${myDest[i].image}" style="max-width:200px"><br> score:${
+    //         myDest[i].score
+    //       }<br> restaurants:${myDest[i].myRestaurant}<br> population:${
+    //         myDest[i].population
+    //       }
+    //       <br>`
+    //       finalHTML = finalHTML + elementHTML;
+    //   }
+      //display.innerHTML = finalHTML;
+    </script>
+  </body>
+</html>

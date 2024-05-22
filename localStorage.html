@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let myDest={
+          name: 'Barcelona',
+          score: 8.5,
+          myRestaurant: ['chef', 'la bamba'],
+          population: 50000,
+          image: "https://picsum.photos/seed/${element}/40/20"
+        }
+        //JSON.stringify(myDest) // doesnt work
+        
+        JSON.stringify(["Barcelona","London","Thailand"]) 
+        //localStorage.setItem("mydestinations",["Barcelona","London","Thailand"])
+        //localStorage.setItem("mydestinations",myDest) // not working
+        localStorage.setItem("mydestinations",JSON.stringify(myDest)) //saved the information ,look in application
+        let myDestinations=localStorage.getItem("mydestinations") // seen in console
+
+        let myDest2 = [
+        {
+          name: 'Barcelona',
+          score: 8.5,
+          myRestaurant: ['chef', 'la bamba'],
+          population: 50000,
+          image: "https://picsum.photos/seed/${element}/40/20"
+        },
+        {
+          name: 'London',
+          score: 8.5,
+          myRestaurant: ['chef', 'la bamba'],
+          population: 50000,
+          image: "https://picsum.photos/seed/${element}/40/20"
+        },
+        {
+          name: 'Thailand',
+          score: 8.5,
+          myRestaurant: ['chef', 'la bamba'],
+          population: 50000,
+          image: "https://picsum.photos/seed/${element}/40/20"
+        },
+      ];
+
+      localStorage.setItem("mydestinations2",JSON.stringify(myDest2)) // can see as array in appliction
+      //let myDestinations2=localStorage.getItem("mydestinations2") // seen in console, not like it should
+      let myDestinations2=JSON.parse(localStorage.getItem("mydestinations2")) // seen in console as an array
+    </script>
+</body>
+</html>

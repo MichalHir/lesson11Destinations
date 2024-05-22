@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="display"></div>
+    <script>
+      let getMyDestinations3 = JSON.parse(
+        localStorage.getItem('mydestinations2')
+      );
+      let finalHTML = '';
+      for (let I = 0; I < getMyDestinations3.length; I++) {
+        const element = getMyDestinations3[I];
+        finalHTML = finalHTML + `${element.name}<br> <hr>`;
+      }
+      display.innerHTML=finalHTML
+
+    </script>
+  </body>
+</html>

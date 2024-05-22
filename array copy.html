@@ -32,27 +32,50 @@
     <div id="destinationsDisplay"></div> 
 
     <script>
-      let myDestinations = ['Barcelona', 'London', 'Thailand'];
+      // let myDestinations = ['Barcelona', 'London', 'Thailand'];
+      let myDestinations2 = JSON.parse(localStorage.getItem("myDestinations2"))
+      myDest=JSON.parse(localStorage.getItem("mydestinations2"))
+      // let myDest = [
+      //   {
+      //     name: 'Barcelona',
+      //     score: 8.5,
+      //     myRestaurant: ['chef', 'la bamba'],
+      //     population: 50000,
+      //     image: "https://picsum.photos/seed/${element}/40/20"
+      //   },
+      //   {
+      //     name: 'London',
+      //     score: 8.5,
+      //     myRestaurant: ['chef', 'la bamba'],
+      //     population: 50000,
+      //     image: "https://picsum.photos/seed/${element}/40/20"
+      //   },
+      //   {
+      //     name: 'Thailand',
+      //     score: 8.5,
+      //     myRestaurant: ['chef', 'la bamba'],
+      //     population: 50000,
+      //     image: "https://picsum.photos/seed/${element}/40/20"
+      //   },
+      // ];
       let myDestinationsCards = [];
-      console.log(myDestinations);
       destinationsDisplay.innerHTML = DestinationsHTML();
 
-      function addDes() {
-        if (!myDestinations.includes(newDes.value) && newDes.value!='') {
-          myDestinations.push(newDes.value);
-          newDes.value = '';
-          //   destinationsDisplay.innerHTML = myDestinations.join('<BR>');
-          destinationsDisplay.innerHTML = DestinationsHTML();
-        } else {
-            newDes.value = '';
-          alert('already in the list');
-        }
-      }
+      // function addDes() {
+      //   if (!myDestinations.includes(newDes.value) && newDes.value!='') {
+      //     myDestinations.push(newDes.value);
+      //     newDes.value = '';
+      //     destinationsDisplay.innerHTML = DestinationsHTML();
+      //   } else {
+      //       newDes.value = '';
+      //     alert('already in the list');
+      //   }
+      // }
 
       function popDes() {
-        myDestinations.pop();
+        myDest.pop();
         destinationsDisplay.innerHTML = DestinationsHTML();
-        if (myDestinations.length == 0) {
+        if (myDest.length == 0) {
           destinationsDisplay.innerHTML =
             '<div style="color:red">No Destinations</div>';
         }
@@ -61,7 +84,7 @@
       function serDes() {
         destinationsDisplay.innerHTML=''
         let lowercase=''
-        for (let i = 0; i < myDestinations.length; i++) {
+        for (let i = 0; i < myDest.length; i++) {
            lowercase=myDestinations[i].toLocaleLowerCase()
            if (lowercase.lastIndexOf((newDes.value).toLocaleLowerCase())!=-1){
             destinationsDisplay.innerHTML+=`<div>${i + 1}${myDestinationsCards[i]}</div>`
@@ -74,23 +97,26 @@
       }
 
       function delDes(num) {
-        myDestinations.splice(num, 1);
+        myDest.splice(num, 1);
         destinationsDisplay.innerHTML = DestinationsHTML();
       }
 
-      function edDes(num) {
-        if (newDes.value != '') {
-          myDestinations[num] = newDes.value;
-        }
-        destinationsDisplay.innerHTML = DestinationsHTML();
-      }
+      // function edDes(num) {
+      //   if (newDes.value != '') {
+      //     myDestinations[num] = newDes.value;
+      //   }
+      //   destinationsDisplay.innerHTML = DestinationsHTML();
+      // }
 
       function cardBuilder() {
-        for (let i = 0; i < myDestinations.length; i++) {
+        for (let i = 0; i < myDest.length; i++) {
           myDestinationsCards[i]=`<div class="card"">
             <div class="card-body" >
-                <div> ${myDestinations[i]} <img src="https://picsum.photos/seed/${myDestinations[i]}/40/20"> </img>
-                                    <button class="btn btn-danger" onclick="delDes(${i})">Delete</button><button class="btn btn-primary" onclick="edDes(${i})">edit</button>
+                <div> city:${myDest[i].name} <br> <img src="${myDest[i].image}"><br> score:${
+             myDest[i].score
+           }<br> restaurants:${myDest[i].myRestaurant}<br> population:${
+            myDest[i].population
+           }<br><button class="btn btn-danger" onclick="delDes(${i})">Delete</button><button class="btn btn-primary" onclick="edDes(${i})">edit</button>
                                   </div>`;
         }
       }
@@ -102,21 +128,15 @@
       function DestinationsHTML() {
         let finalHtml = '';
         cardBuilder()
-        for (let i = 0; i < myDestinations.length; i++) {
+        for (let i = 0; i < myDest.length; i++) {
           const element = myDestinationsCards[i];
-          // let elementHTML =
-          // '<div>' +(i+1)+' '+ element + '<button onclick="delDes(i)">Delete</button></div>';
-          // let elementHTML = `<div class="card"">
-          //   <div class="card-body" >  (cards combined into eachother)
-          //       <div>${i + 1} &nbsp ${element} <img src="https://picsum.photos/seed/${element}/40/20"> </img>
-          //                           <button class="btn btn-danger" onclick="delDes(${i})">Delete</button><button class="btn btn-primary" onclick="edDes(${i})">edit</button>
-          //                         </div>`;
             let elementHTML = 
                 `<div>${i + 1} &nbsp ${element}</div> `;
           finalHtml = finalHtml + elementHTML;
         }
         return finalHtml;
       }
+      //destinationsDisplay.innerHTML=finalHtml
     </script>
   </body>
 </html>

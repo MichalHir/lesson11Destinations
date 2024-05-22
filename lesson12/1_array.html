@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="destDisplay">
+        Ran
+    </div>
+    <input id="newDestination">
+    <button onclick="addDestination()">Add</button>
+    <script>
+        let myDestinations = ['Barcelona', 'New York', 'Los Angeles']
+        displayDestinations()
+
+        function addDestination () {
+            myDestinations.push(newDestination.value)
+            displayDestinations()
+        }
+        function deleteDestination (index) {
+            myDestinations.splice(index, 1)
+            displayDestinations()
+        }
+
+        function displayDestinations () {
+            let finalStr = ''
+            for (let i = 0; i < myDestinations.length; i++) {
+                const destinationStr = `${myDestinations[i]}<button onclick="deleteDestination(${i})">Delete</button><br>`
+                finalStr = finalStr + destinationStr
+            }
+            destDisplay.innerHTML = finalStr
+
+        }
+    </script>
+</body>
+
+</html>
