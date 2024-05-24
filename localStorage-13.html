@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- // let myDestinations = ['Barcelona', 'New York']
+      //  let myDestinations = JSON.parse(localStorage.getItem('myDestinations'))        
+      //  localStorage.setItem('myDestinations', JSON.stringify(myDestinations))            
+      התרגיל:
+      1. צרו כפתור + INPUT והכניסו למערך של יעדים ב-LOCALSTORAGE
+      2. שלפו מה-LOCALSTORAGE והציגו על המסך -->
+      <div><input id="newDestInput"><button  onclick="add()" type="button">add</button><button  onclick="remove()" type="button">remove</button><br>  
+    </div>
+    <div id="display"></div>
+
+      <script>
+         let myDestL13 = ['Barcelona', 'New York']
+      //  let myDestinations = JSON.parse(localStorage.getItem('myDestinations'))        
+      //  localStorage.setItem('myDestinations', JSON.stringify(myDestinations)) 
+      localStorage.setItem('littleDest',JSON.stringify(myDestL13))
+      display.innerHTML = DestinationsHTML();
+      function add() {
+        let new1=JSON.parse(localStorage.getItem('littleDest'))
+        new1.push(newDestInput.value)
+        localStorage.setItem('littleDest',JSON.stringify(new1))
+        display.innerHTML = DestinationsHTML();
+      }
+
+      function remove() {
+        let new1=JSON.parse(localStorage.getItem('littleDest'))
+        let i=0
+        while (newDestInput.value!=new1[i] && i<new1.length) {
+            i++
+        }
+        new1.splice(i,1)
+        localStorage.setItem('littleDest',JSON.stringify(new1))
+        display.innerHTML = DestinationsHTML();
+      }
+      display
+      function DestinationsHTML() {
+        myDestL13=JSON.parse(localStorage.getItem('littleDest'))
+        let finalHtml = '';
+        
+        for (let i = 0; i < myDestL13.length; i++) {
+          const element = myDestL13[i];
+          let elementHTML =
+            `<div>${i + 1} &nbsp ${element}</div> `;
+          finalHtml = finalHtml + elementHTML;
+        }
+        return finalHtml;
+      }
+      </script>
+</body>
+</html>
